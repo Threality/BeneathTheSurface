@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMoveme
     private Rigidbody2D rb;
     private float horizontalInput;
     private float verticalInput;
-    private bool isClimbing;
+    // private bool isClimbing;
     private float defaultGravity;
 
     void OnEnable()
