@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 
     // Allow for editing variables in the inspector
     [Header("Base Movement Settings")]
-    public float MAX_SPEED;
-    public float MAX_DOWNWARD_SPEED;
-    public float ACCELERATION;
-    public float DECELERATION;
+    public float maxSpeed;
+    public float maxDownwardSpeed;
+    public float acceleration;
+    public float deceleration;
 
     [Header("Jump Settings")]
     public float jumpForce;
@@ -61,18 +61,18 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
         if (horizontalInput == 0)
         {
             // If no player input - Decelerate
-            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, DECELERATION * Time.deltaTime);
+            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, deceleration * Time.deltaTime);
         }
         else
         {
             // If player input - Move
-            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, MAX_SPEED * horizontalInput, ACCELERATION * Time.deltaTime);
+            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, maxSpeed * horizontalInput, acceleration * Time.deltaTime);
         }
 
-        if (rb.linearVelocityY < -1 * MAX_DOWNWARD_SPEED)
+        if (rb.linearVelocityY < -1 * maxDownwardSpeed)
         {
             //If above speed cap - Reduce speed
-            rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, -1 * MAX_DOWNWARD_SPEED, DECELERATION * Time.deltaTime);
+            rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, -1 * maxDownwardSpeed, deceleration * Time.deltaTime);
         }
     }
 
