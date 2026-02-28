@@ -11,15 +11,15 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     public float maxDownwardSpeed;
     public float acceleration;
     public float deceleration;
+    public bool isFlipped;
 
     [Header("Jump Settings")]
     public float jumpForce;
     public int defaultCoyote;
     public float sdownwardMultiplication;
 
-    // [Header("Colliders")]
-    // [SerializeField] private GroundCheck groundCheck;
-    // [SerializeField] private CollisionCheck ladderCheck;
+    [Header("Colliders")]
+    [SerializeField] public GroundCheck groundCheck;
 
     // Set up hidden values 
     private float coyoteTime = 0;
@@ -51,10 +51,11 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     #endregion
     #region Movement
 
+
     void Update()
     {
         // Check grounded state
-        // coyoteTime = groundCheck.IsGrounded() ? defaultCoyote : coyoteTime;
+        coyoteTime = groundCheck.IsGrounded() ? defaultCoyote : coyoteTime;
 
 
         // Move the player
@@ -69,10 +70,27 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
             rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, maxSpeed * horizontalInput, acceleration * Time.deltaTime);
         }
 
-        if (rb.linearVelocityY < -1 * maxDownwardSpeed)
+        if (isFlipped)
         {
-            //If above speed cap - Reduce speed
-            rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, -1 * maxDownwardSpeed, deceleration * Time.deltaTime);
+            rb.gravityScale = -defaultGravity;
+            float mult = verticalInput < 0 ? sdownwardMultiplication * verticalInput: 1f;
+            rb.linearVelocityY += (mult - 1) * Time.deltaTime;
+            if (rb.linearVelocityY > maxDownwardSpeed * mult)
+            {
+                //If above speed cap - Reduce speed
+                rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, maxDownwardSpeed, deceleration * Time.deltaTime);
+            }
+        }
+        else
+        {
+            rb.gravityScale = defaultGravity;
+            float mult = verticalInput < 0 ? sdownwardMultiplication * verticalInput: 1f;
+            rb.linearVelocityY -= (mult - 1) * Time.deltaTime;
+            if (rb.linearVelocityY < -1 * maxDownwardSpeed * mult)
+            {
+                //If above speed cap - Reduce speed
+                rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, -1 * maxDownwardSpeed, deceleration * Time.deltaTime);
+            }
         }
     }
 
@@ -101,15 +119,29 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed)
+        {
+            rb.linearVelocityY = rb.linearVelocityY / 2f;
+            return;
+        }
         
         // If the player is currently or was recently
         if (coyoteTime >= 0)
         {
-            rb.linearVelocityY = jumpForce;
-            rb.gravityScale = defaultGravity;
+            float mult = isFlipped ? -1 : 1;
+            rb.linearVelocityY = jumpForce * mult;
         }
         coyoteTime = -1;
     }
+
+    public void OnFlip(InputAction.CallbackContext context)
+    {
+        if (groundCheck.IsOnBaseplate())
+        {
+            GameManager.instance.ChangePlayerState(GameManager.instance.GetPlayerState());
+        }
+    }
+
+
     #endregion
 }
