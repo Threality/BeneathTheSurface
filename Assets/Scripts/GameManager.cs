@@ -46,4 +46,9 @@ public class GameManager : MonoBehaviour
     {
         return currentPlayerState;
     }
+
+    public void LoadLevel(int id)
+    {
+        // Load a level
+    }
 }
