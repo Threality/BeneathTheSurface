@@ -98,6 +98,9 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
             }
         }
 
+        animator.SetFloat("horizontal", horizontalInput);
+        animator.SetFloat("vertical", verticalInput);
+
 
     }
 
