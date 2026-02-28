@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMovementActions*/
+public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovementActions
 {
     #region Setup
 
@@ -16,10 +16,6 @@ public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMoveme
     public float DEFAULT_JUMP_FORCE;
     public int DEFAULT_COYOTE;
 
-    // [Header("Climbing Settings")]
-    // public float climbSpeed;
-    // public LayerMask ladderLayer;
-
     // [Header("Colliders")]
     // [SerializeField] private GroundCheck groundCheck;
     // [SerializeField] private CollisionCheck ladderCheck;
@@ -29,21 +25,20 @@ public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMoveme
     private Rigidbody2D rb;
     private float horizontalInput;
     private float verticalInput;
-    // private bool isClimbing;
     private float defaultGravity;
 
     void OnEnable()
     {
         // Connect player input and rigidbody to script
-        // PlayerInputManager.Instance.playerControls.PlayerMovement.Enable();
-        // PlayerInputManager.Instance.playerControls.PlayerMovement.SetCallbacks(this);
+        PlayerInputManager.Instance.playerControls.PlayerMovement.Enable();
+        PlayerInputManager.Instance.playerControls.PlayerMovement.SetCallbacks(this);
     }
 
     void OnDisable()
     {
         // Disconnect input to prevent null references
-        // PlayerInputManager.Instance.playerControls.PlayerMovement.Disable();
-        // PlayerInputManager.Instance.playerControls.PlayerMovement.RemoveCallbacks(this);
+        PlayerInputManager.Instance.playerControls.PlayerMovement.Disable();
+        PlayerInputManager.Instance.playerControls.PlayerMovement.RemoveCallbacks(this);
     }
 
     void Start()
@@ -60,20 +55,6 @@ public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMoveme
         // Check grounded state
         // coyoteTime = groundCheck.IsGrounded() ? DEFAULT_COYOTE : coyoteTime;
 
-        // Check if the player is trying to climb a ladder
-        // if (ladderCheck.IsTouchingLadder() && Mathf.Abs(verticalInput) > 0.1f) isClimbing = true;
-        // if (!ladderCheck.IsTouchingLadder()) isClimbing = false;
-
-        // Enter the climbing state
-        // if (isClimbing)
-        // {
-        //     rb.gravityScale = 0f;
-        //     rb.linearVelocity = new Vector2(0f, verticalInput * climbSpeed);
-        // }
-        // else
-        // {
-        //     rb.gravityScale = defaultGravity;
-        // }
 
         // Move the player
         if (horizontalInput == 0)
@@ -122,10 +103,9 @@ public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMoveme
         if (!context.performed) return;
         
         // If the player is currently or was recently
-        // if (coyoteTime >= 0 || ladderCheck.IsTouchingLadder())
+        if (coyoteTime >= 0)
         {
             rb.linearVelocityY = DEFAULT_JUMP_FORCE;
-            // isClimbing = false;
             rb.gravityScale = defaultGravity;
         }
         coyoteTime = -1;
