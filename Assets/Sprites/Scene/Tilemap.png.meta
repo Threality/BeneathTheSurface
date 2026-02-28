@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 804100837904c9842ba69e221eefd163
+guid: 23844ee5a1fc5164393a93f223c6d708
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3883798048965889073
-    second: Player.idle_0
+      213: -7708920532220806285
+    second: Tilemap_0
   - first:
-      213: 1108505210714943236
-    second: Player.idle_1
-  - first:
-      213: -7520684614066434253
-    second: Player.idle_2
-  - first:
-      213: -3807107970801676352
-    second: Player.idle_3
+      213: 4564998844612868550
+    second: Tilemap_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player.idle_0
+      name: Tilemap_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 0
         y: 0
-        width: 9
-        height: 30
+        width: 289
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc37800704af91ac0800000000000000
-      internalID: -3883798048965889073
+      spriteID: 37b734b9e99640590800000000000000
+      internalID: -7708920532220806285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player.idle_1
+      name: Tilemap_1
       rect:
         serializedVersion: 2
-        x: 43
+        x: 287
         y: 0
-        width: 9
-        height: 29
+        width: 449
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,52 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40f6554bd93326f00800000000000000
-      internalID: 1108505210714943236
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player.idle_2
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 0
-        width: 9
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33f03d6903921a790800000000000000
-      internalID: -7520684614066434253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player.idle_3
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 0
-        width: 9
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0cfcec2b87f6a2bc0800000000000000
-      internalID: -3807107970801676352
+      spriteID: 6c9f73543422a5f30800000000000000
+      internalID: 4564998844612868550
       vertices: []
       indices: 
       edges: []
@@ -223,10 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player.idle_0: -3883798048965889073
-      Player.idle_1: 1108505210714943236
-      Player.idle_2: -7520684614066434253
-      Player.idle_3: -3807107970801676352
+      Tilemap_0: -7708920532220806285
+      Tilemap_1: 4564998844612868550
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
