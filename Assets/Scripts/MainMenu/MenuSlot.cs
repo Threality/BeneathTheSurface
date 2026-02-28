@@ -12,4 +12,9 @@ public class MenuSlot : MonoBehaviour
         slotID = id;
         textMesh.text = slotID.ToShortString();
     }
+
+    public void LoadLevel()
+    {
+        GameManager.instance.LoadLevel(slotID);
+    }
 }
