@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     public float DECELERATION;
 
     [Header("Jump Settings")]
-    public float DEFAULT_JUMP_FORCE;
-    public int DEFAULT_COYOTE;
+    public float jumpForce;
+    public int defaultCoyote;
+    public float sdownwardMultiplication;
 
     // [Header("Colliders")]
     // [SerializeField] private GroundCheck groundCheck;
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     void Update()
     {
         // Check grounded state
-        // coyoteTime = groundCheck.IsGrounded() ? DEFAULT_COYOTE : coyoteTime;
+        // coyoteTime = groundCheck.IsGrounded() ? defaultCoyote : coyoteTime;
 
 
         // Move the player
@@ -105,7 +106,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
         // If the player is currently or was recently
         if (coyoteTime >= 0)
         {
-            rb.linearVelocityY = DEFAULT_JUMP_FORCE;
+            rb.linearVelocityY = jumpForce;
             rb.gravityScale = defaultGravity;
         }
         coyoteTime = -1;
