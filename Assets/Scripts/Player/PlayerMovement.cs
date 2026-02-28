@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 {
     #region Setup
 
+    private Animator animator;
+
     // Allow for editing variables in the inspector
     [Header("Base Movement Settings")]
     public float maxSpeed;
@@ -46,9 +48,12 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     {
         rb = GetComponent<Rigidbody2D>();
         defaultGravity = rb.gravityScale;
+        animator = GetComponent<Animator>();
     }
 
     #endregion
+
+ 
     #region Movement
 
 
@@ -92,6 +97,8 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
                 rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, -1 * maxDownwardSpeed, deceleration * Time.deltaTime);
             }
         }
+
+
     }
 
     void FixedUpdate()
@@ -144,4 +151,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 
 
     #endregion
+
+
 }
