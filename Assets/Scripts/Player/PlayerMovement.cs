@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour/*, InputSystem_Actions.IPlayerMoveme
         // if (coyoteTime >= 0 || ladderCheck.IsTouchingLadder())
         {
             rb.linearVelocityY = DEFAULT_JUMP_FORCE;
-            isClimbing = false;
+            // isClimbing = false;
             rb.gravityScale = defaultGravity;
         }
         coyoteTime = -1;
