@@ -42,8 +42,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FlipObject(GameObject obj)
+    {
+        if (obj.GetComponent<Rigidbody2D>().gravityScale < 0)
+        {
+            basePlateFlip.ObjectToRightsideUp(obj);
+        }
+        basePlateFlip.ObjectToUpsideDown(obj);
+    }
+
     public PlayerState GetPlayerState()
     {
         return currentPlayerState;
+    }
+
+    public void LoadLevel(int id)
+    {
+        // Load a level
     }
 }

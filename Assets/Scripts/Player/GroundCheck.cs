@@ -7,7 +7,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground")|| collision.CompareTag("Baseplate"))
+        if (collision.CompareTag("Ground")|| collision.CompareTag("Baseplate") || collision.CompareTag("Object"))
         {
             groundCount++;
         }
@@ -19,7 +19,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Baseplate"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Baseplate") || collision.CompareTag("Object"))
         {
             groundCount--;
         }
