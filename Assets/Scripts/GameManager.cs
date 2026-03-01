@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Playing:
                 currentGameState = GameState.Playing;
+                manager.EnterGameplay();
                 break;
         }
     }
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
     {
         FullyRemoveLevel();
         GameObject level = Instantiate(levels[id]);
+        level.SetActive(true);
         activeLevel = level;
         activeLevelID = id;
         PlayerContainer.instance.player.transform.position = new Vector2(0, 4);

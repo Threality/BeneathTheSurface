@@ -8,8 +8,8 @@ public class MenuManager : MonoBehaviour
 
     [Header("References")]
     public GameObject mainMenuUI;
-    public GameObject pauseUI;
     public GameObject alertUI;
+    public GameObject player;
     public TextMeshProUGUI alertText;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
     public void DisableAll()
     {
         mainMenuUI.SetActive(false);
-        pauseUI.SetActive(false);
+        player.SetActive(false);
     }
 
     public void EnterMainMenu()
@@ -29,9 +29,9 @@ public class MenuManager : MonoBehaviour
         mainMenuUI.SetActive(true);
     }
 
-    public void EnterPauseUI()
+    public void EnterGameplay()
     {
-        pauseUI.SetActive(true);
+        player.SetActive(true);
     }
 
     public void AlertUser(string text)
