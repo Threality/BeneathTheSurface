@@ -368,10 +368,10 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: -10}
   minX: -10
   maxX: 10
-  minY: 5
+  minY: 0
   maxY: 8
   flippedMinY: -10
-  flippedMaxY: -5
+  flippedMaxY: 0
   isFlipped: 0
 --- !u!1 &597561816
 GameObject:

@@ -119,10 +119,8 @@ public class GameManager : MonoBehaviour
 
     public void KillPlayer()
     {
-        /*
-        if (activeLevel) Destroy(activeLevel);
-        LoadLevel(activeLevelID);
-        */
+        MenuManager.instance.AlertUser($"You won level {activeLevelName}");
+        LoadLevel(activeLevelName);
     }
 
     public void Win()

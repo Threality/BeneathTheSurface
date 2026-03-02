@@ -46,18 +46,20 @@ public class CameraFollow : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 desiredPosition = target.position + offset;
+        width = mainCamera.orthographicSize * mainCamera.aspect;
+        height = mainCamera.orthographicSize;
 
         float x = 0;
         float y = 0;
         if (isFlipped)
         {
             x = Mathf.Clamp(desiredPosition.x, minX + width, maxX - width);
-            y = Mathf.Clamp(desiredPosition.y, flippedMinY, flippedMaxY);
+            y = Mathf.Clamp(desiredPosition.y, flippedMinY + height, flippedMaxY - height);
         }
         else
         {
             x = Mathf.Clamp(desiredPosition.x, minX + width, maxX - width);
-            y = Mathf.Clamp(desiredPosition.y, minY, maxY);
+            y = Mathf.Clamp(desiredPosition.y, minY + height, maxY - height);
         }
 
         Vector3 smoothPos = Vector3.Lerp(transform.position, new Vector3(x, y, offset.z), speed * Time.deltaTime);
