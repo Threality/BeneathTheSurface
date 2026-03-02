@@ -28,6 +28,21 @@ public class CameraFollow : MonoBehaviour
         width = height * Screen.width / Screen.height;
     }
 
+    public void UpdateBounds()
+    {
+        CameraBounds bounds = FindFirstObjectByType<CameraBounds>();
+
+        if (bounds != null)
+        {
+            minX = bounds.minX;
+            maxX = bounds.maxX;
+            minY = bounds.minY;
+            maxY = bounds.maxY;
+            flippedMinY = bounds.flippedMinY;
+            flippedMaxY = bounds.flippedMaxY;
+        }
+    }
+
     private void LateUpdate()
     {
         Vector3 desiredPosition = target.position + offset;

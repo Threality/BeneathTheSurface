@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 
 public class LevelSelectionManager : MonoBehaviour
 {
@@ -7,10 +6,10 @@ public class LevelSelectionManager : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 24; i++)
+        for (int i = 0; i < GameManager.instance.levels.Count ; i++)
         {
             GameObject slot = Instantiate(levelSlot, transform);
-            slot.GetComponent<MenuSlot>().Initialise(i + 1);
+            slot.GetComponent<MenuSlot>().Initialise(GameManager.instance.levels[i]);
         }
     }
 }

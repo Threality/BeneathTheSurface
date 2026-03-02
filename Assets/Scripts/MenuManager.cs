@@ -7,8 +7,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager instance;
 
     [Header("References")]
-    public GameObject mainMenuUI;
-    public GameObject pauseUI;
+    // public GameObject pauseUI;
     public GameObject alertUI;
     public TextMeshProUGUI alertText;
 
@@ -20,18 +19,12 @@ public class MenuManager : MonoBehaviour
 
     public void DisableAll()
     {
-        mainMenuUI.SetActive(false);
-        pauseUI.SetActive(false);
-    }
-
-    public void EnterMainMenu()
-    {
-        mainMenuUI.SetActive(true);
+        // pauseUI.SetActive(false);
     }
 
     public void EnterPauseUI()
     {
-        pauseUI.SetActive(true);
+        // pauseUI.SetActive(true);
     }
 
     public void AlertUser(string text)

@@ -1,24 +1,21 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Collections;
-using UnityEngine.InputSystem.LowLevel;
-using Unity.Multiplayer.PlayMode;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public List<GameObject> levels = new List<GameObject>();
+    public List<string> levels = new List<string>();
 
-    private PlayerState currentPlayerState = PlayerState.RightsideUp;
-    private GameState currentGameState = GameState.MainMenu;
-    private GameObject activeLevel;
-    private int activeLevelID = 1;
+    public PlayerState currentPlayerState = PlayerState.RightsideUp;
+    public GameState currentGameState = GameState.MainMenu;
+    public string activeLevelName = "";
 
     [Header("References")]
     public BasePlateFlip basePlateFlip;
+    public CameraFollow cameraFollow;
 
     public enum PlayerState
     {
@@ -36,9 +33,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
-        DontDestroyOnLoad(transform.parent);
-
-        ChangeGameState(GameState.MainMenu);
+        LoadLevel("MainMenu");
     }
 
     public void ChangePlayerState(PlayerState state)
@@ -58,15 +53,14 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGameState(GameState state)
     {
-        MenuManager manager = MenuManager.instance;
-        manager.DisableAll();
-        
+        // MenuManager manager = MenuManager.instance;
+        // manager.DisableAll();
 
         switch (state)
         {
             case GameState.MainMenu:
                 currentGameState = GameState.MainMenu;
-                manager.EnterMainMenu();
+                LoadLevel("MainMenu");
                 break;
             case GameState.Playing:
                 currentGameState = GameState.Playing;
@@ -88,37 +82,52 @@ public class GameManager : MonoBehaviour
         return currentPlayerState;
     }
 
-    public void LoadLevel(int id)
+    public void LoadLevel(string sceneName)
     {
-        FullyRemoveLevel();
-        GameObject level = Instantiate(levels[id]);
-        activeLevel = level;
-        activeLevelID = id;
-        PlayerContainer.instance.player.transform.position = new Vector2(0, 4);
-        ChangeGameState(GameState.Playing);
+        StartCoroutine(LoadLevelRoutine(sceneName));
+    }
+
+    private IEnumerator LoadLevelRoutine(string sceneName)
+    {
+        if (!string.IsNullOrEmpty(activeLevelName))
+        {
+            Scene scene = SceneManager.GetSceneByName(activeLevelName);
+
+            if (scene.isLoaded)
+                yield return SceneManager.UnloadSceneAsync(scene);
+        }
+
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+        activeLevelName = sceneName;
+
+        GameObject spawn = GameObject.FindGameObjectWithTag("Spawnpoint");
+
+        if(sceneName != "MainMenu")
+        {
+            PlayerContainer.instance.player.transform.position = spawn.transform.position;
+            PlayerContainer.instance.player.SetActive(true);
+
+            ChangeGameState(GameState.Playing);
+        }
+        else
+        {
+            PlayerContainer.instance.player.SetActive(false);
+        }
+        cameraFollow.UpdateBounds();
     }
 
     public void KillPlayer()
     {
+        /*
         if (activeLevel) Destroy(activeLevel);
         LoadLevel(activeLevelID);
-    }
-    
-    public void DeleteLevels()
-    {
-        if (activeLevel) Destroy(activeLevel);
-    }
-
-    public void FullyRemoveLevel()
-    {
-        if (activeLevel) Destroy(activeLevel);
-        activeLevelID = 1;
+        */
     }
 
     public void Win()
     {
         ChangeGameState(GameState.MainMenu);
-        MenuManager.instance.AlertUser($"You won level {activeLevelID}");
-        FullyRemoveLevel();
+        MenuManager.instance.AlertUser($"You won level {activeLevelName}");
     }
 }

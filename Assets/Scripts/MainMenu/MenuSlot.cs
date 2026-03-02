@@ -4,13 +4,13 @@ using Unity.VisualScripting;
 
 public class MenuSlot : MonoBehaviour
 {
-    public int slotID;
+    public string slotID;
     public TextMeshProUGUI textMesh;
 
-    public void Initialise(int id)
+    public void Initialise(string id)
     {
         slotID = id;
-        textMesh.text = slotID.ToShortString();
+        textMesh.text = slotID;
     }
 
     public void LoadLevel()
