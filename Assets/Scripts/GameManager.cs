@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerContainer.instance.player.transform.position = spawn.transform.position;
             PlayerContainer.instance.player.SetActive(true);
+            PlayerContainer.instance.player.GetComponent<Rigidbody2D>().linearVelocity = new Vector3(0, 0, 0);
 
             ChangeGameState(GameState.Playing);
         }
@@ -119,8 +120,8 @@ public class GameManager : MonoBehaviour
 
     public void KillPlayer()
     {
-        MenuManager.instance.AlertUser($"You died");
         LoadLevel(activeLevelName);
+        MenuManager.instance.AlertUser($"You died");
     }
 
     public void Win()
