@@ -681,7 +681,8 @@ MonoBehaviour:
   notPushedSprite: {fileID: -5046046137418722129, guid: d796567fa757cca40a09dabcc84e960e, type: 3}
   pushedSprite: {fileID: -299411925, guid: d796567fa757cca40a09dabcc84e960e, type: 3}
   spriteRenderer: {fileID: 1176471795}
-  buttonReceivers: []
+  buttonReceivers:
+  - {fileID: 5970201621787648375}
 --- !u!212 &1176471795
 SpriteRenderer:
   serializedVersion: 2
@@ -1432,6 +1433,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773a983da9d6c03c0b59177f16e4bde9, type: 3}
+--- !u!114 &5970201621787648375 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7683524648559975426, guid: 773a983da9d6c03c0b59177f16e4bde9, type: 3}
+  m_PrefabInstance: {fileID: 5970201621787648372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a3704345c1469c1927500e845f1cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorButton
 --- !u!1001 &6350096308671740128
 PrefabInstance:
   m_ObjectHideFlags: 0
