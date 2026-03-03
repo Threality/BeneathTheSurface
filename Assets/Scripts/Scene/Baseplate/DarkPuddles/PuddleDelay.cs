@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PuddleDelay : MonoBehaviour
 {
-    private float puddleCooldown;
+    public float puddleCooldown;
 
     private void Update()
     {

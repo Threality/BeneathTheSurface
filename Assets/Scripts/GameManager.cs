@@ -74,7 +74,10 @@ public class GameManager : MonoBehaviour
         {
             basePlateFlip.ObjectToRightsideUp(obj);
         }
-        basePlateFlip.ObjectToUpsideDown(obj);
+        else
+        {
+            basePlateFlip.ObjectToUpsideDown(obj);
+        }
     }
 
     public PlayerState GetPlayerState()

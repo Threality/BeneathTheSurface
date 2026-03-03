@@ -1326,7 +1326,7 @@ PrefabInstance:
     - target: {fileID: 9186900961208539824, guid: cb31ff0e69f73a2af9cb40695b2379e1, type: 3}
       propertyPath: 'buttonReceivers.Array.data[0]'
       value: 
-      objectReference: {fileID: 5970201621787648376}
+      objectReference: {fileID: 5970201621787648375}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1502,7 +1502,8 @@ PrefabInstance:
       propertyPath: isOpen
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7683524648559975426, guid: 773a983da9d6c03c0b59177f16e4bde9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1539,17 +1540,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   door: {fileID: 5970201621787648374}
---- !u!114 &5970201621787648376 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7683524648559975426, guid: 773a983da9d6c03c0b59177f16e4bde9, type: 3}
-  m_PrefabInstance: {fileID: 5970201621787648372}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5970201621787648373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a3704345c1469c1927500e845f1cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorButton
 --- !u!1001 &6350096308671740128
 PrefabInstance:
   m_ObjectHideFlags: 0
