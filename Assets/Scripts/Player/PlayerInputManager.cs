@@ -20,6 +20,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         playerControls = new InputSystem_Actions();
         playerControls.Enable();
+
     }
 
     void OnDisable()

@@ -5,7 +5,11 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 {
     #region Setup
 
+
     private Animator animator;
+    public void FlipToUpsideDown() => animator.SetTrigger("goToDown");
+    public void FlipToRightSideUp() => animator.SetTrigger("goToUp");
+
 
     // Allow for editing variables in the inspector
     [Header("Base Movement Settings")]
@@ -14,7 +18,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     public float acceleration;
     public float deceleration;
     public bool isFlipped;
-
     [Header("Jump Settings")]
     public float jumpForce;
     public int defaultCoyote;
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     private float horizontalInput;
     private float verticalInput;
     private float defaultGravity;
+
 
     void OnEnable()
     {
@@ -62,6 +66,8 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
         // Check grounded state
         coyoteTime = groundCheck.IsGrounded() ? defaultCoyote : coyoteTime;
 
+        
+        animator.SetFloat("Horizontal", rb.linearVelocityX);
 
         // Move the player
         if (horizontalInput == 0)
