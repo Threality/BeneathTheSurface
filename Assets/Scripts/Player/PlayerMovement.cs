@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     {
         // Check grounded state
         coyoteTime = groundCheck.IsGrounded() ? defaultCoyote : coyoteTime;
-        jumpTimer = jumpTimer < 2f ? jumpTimer - Time.deltaTime : jumpTimer;
+        jumpTimer = jumpTimer > -1f ? jumpTimer - Time.deltaTime : jumpTimer;
         
         animator.SetFloat("Horizontal", rb.linearVelocityX);
 
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed && jumpTimer < 0.5f)
+        if (!context.performed && jumpTimer > 0f)
         {
             rb.linearVelocityY = rb.linearVelocityY / 2f;
             return;
@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
         {
             float mult = isFlipped ? -1 : 1;
             rb.linearVelocityY = jumpForce * mult;
-            jumpTimer = 0f;
+            jumpTimer = 0.5f;
         }
         coyoteTime = -1;
     }
