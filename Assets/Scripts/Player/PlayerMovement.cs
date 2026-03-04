@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     #region Setup
 
 
-    private Animator animator;
+    public Animator animator;
     public void FlipToUpsideDown() => animator.SetTrigger("goToDown");
     public void FlipToRightSideUp() => animator.SetTrigger("goToUp");
 
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     public float acceleration;
     public float deceleration;
     public bool isFlipped;
+
     [Header("Jump Settings")]
     public float jumpForce;
     public int defaultCoyote;
@@ -52,7 +53,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     {
         rb = GetComponent<Rigidbody2D>();
         defaultGravity = rb.gravityScale;
-        animator = GetComponent<Animator>();
     }
 
     #endregion
