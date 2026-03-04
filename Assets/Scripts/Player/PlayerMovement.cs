@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 {
     #region Setup
 
-
     public Animator animator;
 
 
@@ -21,6 +20,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     public float jumpForce;
     public int defaultCoyote;
     public float sdownwardMultiplication;
+    public float jumpTimer;
 
     [Header("Colliders")]
     [SerializeField] public GroundCheck groundCheck;
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
     {
         // Check grounded state
         coyoteTime = groundCheck.IsGrounded() ? defaultCoyote : coyoteTime;
-
+        jumpTimer = jumpTimer < 2f ? jumpTimer - Time.deltaTime : jumpTimer;
         
         animator.SetFloat("Horizontal", rb.linearVelocityX);
 
@@ -101,8 +101,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
                 rb.linearVelocityY = Mathf.Lerp(rb.linearVelocityY, -1 * maxDownwardSpeed, deceleration * Time.deltaTime);
             }
         }
-
-
     }
 
     void FixedUpdate()
@@ -130,7 +128,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed && jumpTimer < 0.5f)
         {
             rb.linearVelocityY = rb.linearVelocityY / 2f;
             return;
@@ -141,6 +139,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
         {
             float mult = isFlipped ? -1 : 1;
             rb.linearVelocityY = jumpForce * mult;
+            jumpTimer = 0f;
         }
         coyoteTime = -1;
     }
@@ -152,9 +151,5 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
             GameManager.instance.ChangePlayerState(GameManager.instance.GetPlayerState());
         }
     }
-
-
     #endregion
-
-
 }
