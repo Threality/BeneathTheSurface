@@ -7,8 +7,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerMovement
 
 
     public Animator animator;
-    public void FlipToUpsideDown() => animator.SetTrigger("goToDown");
-    public void FlipToRightSideUp() => animator.SetTrigger("goToUp");
 
 
     // Allow for editing variables in the inspector

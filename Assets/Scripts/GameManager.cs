@@ -29,11 +29,6 @@ public class GameManager : MonoBehaviour
         MainMenu,
     }
 
-    // For animation
-    [SerializeField] private PlayerMovement playerMovement;
-
-
-
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -46,12 +41,10 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case PlayerState.UpsideDown:
-                playerMovement.FlipToUpsideDown();
                 currentPlayerState = PlayerState.RightsideUp;
                 basePlateFlip.EnterRightsideUp();
                 break;
             case PlayerState.RightsideUp:
-                playerMovement.FlipToRightSideUp();
                 currentPlayerState = PlayerState.UpsideDown;
                 basePlateFlip.EnterUpsideDown();
                 break;

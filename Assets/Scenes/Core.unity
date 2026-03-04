@@ -751,7 +751,6 @@ MonoBehaviour:
   activeLevelName: 
   basePlateFlip: {fileID: 651177679}
   cameraFollow: {fileID: 519420033}
-  playerMovement: {fileID: 2052627510}
 --- !u!114 &651177679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasePlateFlip
   cameraFollow: {fileID: 519420033}
+  playerAnimator: {fileID: 1570049289}
 --- !u!1 &667841519
 GameObject:
   m_ObjectHideFlags: 0

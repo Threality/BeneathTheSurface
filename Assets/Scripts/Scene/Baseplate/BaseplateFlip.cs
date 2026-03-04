@@ -3,6 +3,7 @@ using UnityEngine;
 public class BasePlateFlip : MonoBehaviour
 {
     public CameraFollow cameraFollow;
+    public Animator playerAnimator;
 
     public void EnterRightsideUp()
     {
@@ -15,6 +16,8 @@ public class BasePlateFlip : MonoBehaviour
         PlayerContainer.instance.groundCheck.localScale = new Vector3(1, 1, 1);
 
         cameraFollow.isFlipped = false;
+
+        playerAnimator.SetTrigger("goToUp");
     }
 
     public void EnterUpsideDown()
@@ -27,6 +30,8 @@ public class BasePlateFlip : MonoBehaviour
         PlayerContainer.instance.groundCheck.localScale = new Vector3(1, -1, 1);
 
         cameraFollow.isFlipped = true;
+
+        playerAnimator.SetTrigger("goToDown");
     }
 
     public void ObjectToRightsideUp(GameObject obj)
